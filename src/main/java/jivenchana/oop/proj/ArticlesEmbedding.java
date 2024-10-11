@@ -7,8 +7,8 @@ import org.nd4j.linalg.factory.Nd4j;
 
 import java.util.Properties;
 
-
-public class ArticlesEmbedding extends NewsArticles {
+public class ArticlesEmbedding extends NewsArticles 
+{
     private int intSize = -1;
     private String processedText = "";
 
@@ -16,19 +16,18 @@ public class ArticlesEmbedding extends NewsArticles {
 
     public boolean isEmbedded = false;
 
-    public ArticlesEmbedding(String _title, String _content, NewsArticles.DataType _type, String _label) {
-
+    public ArticlesEmbedding(String _title, String _content, NewsArticles.DataType _type, String _label) 
+    {
         super(_title, _content, _type, _label);
-
     }
 
-    public void setEmbeddingSize(int _size) {
-
+    public void setEmbeddingSize(int _size) 
+    {
         this.intSize = _size;
-
     }
 
-    public int getEmbeddingSize(){
+    public int getEmbeddingSize()
+    {
         return intSize;
     }
 
@@ -110,6 +109,7 @@ public class ArticlesEmbedding extends NewsArticles {
      * @param _content Text that need to be cleaned.
      * @return The cleaned text.
      */
+    
     private static String textCleaning(String _content)
     {
         StringBuilder sbContent = new StringBuilder();
