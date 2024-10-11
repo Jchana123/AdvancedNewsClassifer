@@ -14,7 +14,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Toolkit {
+public class Toolkit 
+{
     public static List<String> listVocabulary = null;
     public static List<double[]> listVectors = null;
     private static final String FILENAME_GLOVE = "glove.6B.50d_Reduced.csv";
@@ -24,7 +25,7 @@ public class Toolkit {
     public void loadGlove() throws IOException
     {
         BufferedReader myReader = null;
-
+        
         try
         {
             listVocabulary = new ArrayList<>();
@@ -111,7 +112,13 @@ public class Toolkit {
     }
 
 
-    public static List<String> getListVocabulary() { return listVocabulary; }
+    public static List<String> getListVocabulary() 
+    { 
+        return listVocabulary; 
+    }
 
-    public static List<double[]> getlistVectors() { return listVectors; }
+    public static List<double[]> getlistVectors() 
+    { 
+        return listVectors; 
+    }
 }
