@@ -20,7 +20,8 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import java.io.IOException;
 import java.util.*;
 
-public class AdvancedNewsClassifier {
+public class AdvancedNewsClassifier 
+{
     public Toolkit myTK = null;
     public static List<NewsArticles> listNews = null;
     public static List<Glove> listGlove = null;
@@ -181,7 +182,8 @@ public class AdvancedNewsClassifier {
         return new ListDataSetIterator(listDS, BATCHSIZE);
     }
 
-    public MultiLayerNetwork buildNeuralNetwork(int _numOfClasses) throws Exception {
+    public MultiLayerNetwork buildNeuralNetwork(int _numOfClasses) throws Exception 
+    {
         DataSetIterator trainIter = populateRecordReaders(_numOfClasses);
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(42)
@@ -201,7 +203,8 @@ public class AdvancedNewsClassifier {
         MultiLayerNetwork model = new MultiLayerNetwork(conf);
         model.init();
 
-        for (int n = 0; n < 100; n++) {
+        for (int n = 0; n < 100; n++) 
+        {
             model.fit(trainIter);
             trainIter.reset();
         }
@@ -218,6 +221,7 @@ public class AdvancedNewsClassifier {
             {
                 int[] result = myNeuralNetwork.predict(embedding.getEmbedding());
                 listResult.add(result[0]);
+                
                 embedding.setNewsLabel(String.valueOf(result[0] + 1));
             }
         }
@@ -236,8 +240,10 @@ public class AdvancedNewsClassifier {
         }
         listClassNumber.sort(null);
 
-        for (int i : listClassNumber) {
+        for (int i : listClassNumber) 
+        {
             System.out.println("Group " + i);
+            
             for (ArticlesEmbedding embedding : listEmbedding.stream().filter(embedding -> embedding.getNewsType() == NewsArticles
                     .DataType.Testing && embedding.getNewsLabel()
                     .equals(String.valueOf(i))).toList())
