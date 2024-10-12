@@ -33,6 +33,12 @@ public class AdvancedNewsClassifier
     public int embeddingSize = 0;
     private static StopWatch mySW = new StopWatch();
 
+    /**
+     * Constructor for AdvancedNewsClassifier
+     * Initializes the toolkit, loads the news data, & prepares embedding
+     *
+     * @throws IOException If GloVe file cannot be loaded
+     */
     public AdvancedNewsClassifier() throws IOException
     {
         myTK = new Toolkit();
@@ -42,6 +48,12 @@ public class AdvancedNewsClassifier
         listEmbedding = loadData();
     }
 
+    /**
+     * Main method to execute the classification workflow
+     *
+     * @param args -> Command-line arguments
+     * @throws Exception -> If any exception occurs during execution
+     */
     public static void main(String[] args) throws Exception
     {
         mySW.start();
@@ -57,6 +69,11 @@ public class AdvancedNewsClassifier
         System.out.println("Total elapsed time: " + mySW.getTime());
     }
 
+    /**
+     * Creates list of Glove objs from the vocab & vectors
+     *
+     * @return -> List of Glove objects
+     */
     public List<Glove> createGloveList()
     {
         List<Glove> listResult = new ArrayList<>();
@@ -74,6 +91,13 @@ public class AdvancedNewsClassifier
         return listResult;
     }
 
+    /**
+     * Checks if a word is not contained in stopwords list
+     *
+     * @param stopWords -> List of stopwords
+     * @param word -> word to check
+     * @return True if word is not in stopwords list, otherwise false
+     */
     private static boolean notContains(String[] stopWords, String word)
     {
         for (String stopWord : stopWords)
@@ -86,7 +110,11 @@ public class AdvancedNewsClassifier
         return true;
     }
 
-
+    /**
+     * Loads data into list of ArticlesEmbedding objs
+     *
+     * @return -> List of ArticlesEmbedding objs
+     */
     public static List<ArticlesEmbedding> loadData()
     {
         List<ArticlesEmbedding> listEmbedding = new ArrayList<>();
@@ -98,6 +126,12 @@ public class AdvancedNewsClassifier
         return listEmbedding;
     }
 
+    /**
+     * Calculates median embedding size for list of ArticlesEmbedding objs
+     *
+     * @param _listEmbedding -> List of ArticlesEmbedding objs
+     * @return -> Median embedding size
+     */
     public int calculateEmbeddingSize(List<ArticlesEmbedding> _listEmbedding)
     {
         int intMedian = -1;
@@ -120,6 +154,12 @@ public class AdvancedNewsClassifier
         return intMedian;
     }
 
+    /**
+     * Calculates the median value from list of ints
+     *
+     * @param _list -> list of type int
+     * @return -> median value
+     */
     private int calculateMedian(List<Integer> _list)
     {
         int size = _list.size();
@@ -136,6 +176,9 @@ public class AdvancedNewsClassifier
         }
     }
 
+    /**
+     * Populates embedding size for all ArticlesEmbedding objs
+     */
     public void populateEmbedding()
     {
         for (int i = 0; i < listEmbedding.size(); i++)
@@ -159,6 +202,13 @@ public class AdvancedNewsClassifier
         }
     }
 
+    /**
+     * Populates training & testing records into DataSet objs for neural network training
+     *
+     * @param _numberOfClasses -> Number of output classes for the neural network
+     * @return DataSetIterator for training neural network
+     * @throws Exception If there is an issue in creating the dataset
+     */
     public DataSetIterator populateRecordReaders(int _numberOfClasses) throws Exception
     {
         ListDataSetIterator myDataIterator = null;
@@ -182,6 +232,13 @@ public class AdvancedNewsClassifier
         return new ListDataSetIterator(listDS, BATCHSIZE);
     }
 
+    /**
+     * Builds and trains a neural network for classification
+     *
+     * @param _numOfClasses -> Number of output classes for neural network
+     * @return Trained MultiLayerNetwork
+     * @throws Exception If there is an issue in configuring / training the network
+     */
     public MultiLayerNetwork buildNeuralNetwork(int _numOfClasses) throws Exception 
     {
         DataSetIterator trainIter = populateRecordReaders(_numOfClasses);
@@ -211,6 +268,13 @@ public class AdvancedNewsClassifier
         return model;
     }
 
+    /**
+     * Predicts result for test articles
+     *
+     * @param _listEmbedding -> List of ArticlesEmbedding to predict results for
+     * @return List of predicted class labels
+     * @throws Exception If there is an issue in generating predictions
+     */
     public List<Integer> predictResult(List<ArticlesEmbedding> _listEmbedding) throws Exception
     {
         List<Integer> listResult = new ArrayList<>();
@@ -228,6 +292,9 @@ public class AdvancedNewsClassifier
         return listResult;
     }
 
+    /**
+     * Prints classification results, grouping articles by their predicted class labels
+     */
     public void printResults()
     {
         List<Integer> listClassNumber = new ArrayList<>();
