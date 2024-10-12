@@ -11,7 +11,8 @@ This classifier takes news articles, processes their text, and uses **GloVe word
 - **GloVe Embeddings**: Utilize pre-trained GloVe embeddings for vector representation of words.
 - **Neural Network**: Classify articles using a deep learning model built with Deeplearning4J.
 - **PCA Visualizations**: Visualize article embeddings in 2D space with PCA or t-SNE.
-Please note: for more indepth detail and diagrams of the process see the README 
+  
+- **Please note: for more indepth detail and diagrams of the process see the README.md in ```src/main/java/jivenchana/oop/proj```**
   
 ## Demo
 
