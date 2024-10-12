@@ -16,6 +16,14 @@ public class ArticlesEmbedding extends NewsArticles
 
     public boolean isEmbedded = false;
 
+    /**
+     * Constructor for creating an ArticlesEmbedding object
+     * 
+     * @param _title The title of the article
+     * @param _content The content of the article
+     * @param _type The data type of the article (Training or Testing)
+     * @param _label The label of the article
+     */
     public ArticlesEmbedding(String _title, String _content, NewsArticles.DataType _type, String _label) 
     {
         super(_title, _content, _type, _label);
@@ -31,6 +39,11 @@ public class ArticlesEmbedding extends NewsArticles
         return intSize;
     }
 
+    /**
+     * Retrieves and processes the cleaned content of the news article
+     * 
+     * @return -> Processed content of the article
+     */
     @Override
     public String getNewsContent()
     {
@@ -56,6 +69,14 @@ public class ArticlesEmbedding extends NewsArticles
         }
         return processedText.trim();
     }
+
+    /**
+     * Checks if the stopwords arr does not contain search value
+     * 
+     * @param _arrayTarget -> Arr of stopwords
+     * @param _searchValue -> Word to search for inside stopwords
+     * @return -> True if the stopwords do not contain the search value; otherwise false
+     */
     private static boolean notContains(String[] _arrayTarget, String _searchValue)
     {
         for (String element : _arrayTarget)
@@ -68,6 +89,12 @@ public class ArticlesEmbedding extends NewsArticles
         return true;
     }
 
+    /**
+     * Retrieves the embedding vector for the article
+     * 
+     * @return -> Embedding as an INDArray
+     * @throws -> Exception If embedding size or text is invalid
+     */
     public INDArray getEmbedding() throws Exception
     {
         if (newsEmbedding.isEmpty())
@@ -105,9 +132,9 @@ public class ArticlesEmbedding extends NewsArticles
     }
 
     /***
-     * Clean the given (_content) text by removing all the characters that are not 'a'-'z', '0'-'9' and white space.
-     * @param _content Text that need to be cleaned.
-     * @return The cleaned text.
+     * Clean the given (_content) text by removing all the characters that are not 'a'-'z', '0'-'9' and white space
+     * @param _content -> Text that need to be cleaned
+     * @return -> cleaned text
      */
     
     private static String textCleaning(String _content)
