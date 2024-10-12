@@ -14,14 +14,26 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * The Toolkit class is responsible for loading and processing GloVe vectors and news articles
+ * It also provides utility methods to access vocabulary and vector lists
+ */
 public class Toolkit 
 {
+    // Static variables to store vocab & vector data
     public static List<String> listVocabulary = null;
     public static List<double[]> listVectors = null;
     private static final String FILENAME_GLOVE = "glove.6B.50d_Reduced.csv";
 
+    // Static arr of stopwords used in NLP operation
     public static final String[] STOPWORDS = {"a", "able", "about", "across", "after", "all", "almost", "also", "am", "among", "an", "and", "any", "are", "as", "at", "be", "because", "been", "but", "by", "can", "cannot", "could", "dear", "did", "do", "does", "either", "else", "ever", "every", "for", "from", "get", "got", "had", "has", "have", "he", "her", "hers", "him", "his", "how", "however", "i", "if", "in", "into", "is", "it", "its", "just", "least", "let", "like", "likely", "may", "me", "might", "most", "must", "my", "neither", "no", "nor", "not", "of", "off", "often", "on", "only", "or", "other", "our", "own", "rather", "said", "say", "says", "she", "should", "since", "so", "some", "than", "that", "the", "their", "them", "then", "there", "these", "they", "this", "tis", "to", "too", "twas", "us", "wants", "was", "we", "were", "what", "when", "where", "which", "while", "who", "whom", "why", "will", "with", "would", "yet", "you", "your"};
-
+    
+    /**
+     * Loads the GloVe embeddings from resource file
+     * Initializes listVocabulary & listVectors with data from file
+     * 
+     * @throws IOException if there is an issue reading the file
+     */
     public void loadGlove() throws IOException
     {
         BufferedReader myReader = null;
@@ -55,7 +67,14 @@ public class Toolkit
             myReader.close();
         }
     }
-
+    
+    /**
+     * Retrieves a file from resources folder
+     * 
+     * @param fileName -> name of the file to load
+     * @return a File obj representing the file
+     * @throws URISyntaxException if there is a syntax issue with the file URI
+     */
     private static File getFileFromResource(String fileName) throws URISyntaxException
     {
         ClassLoader classLoader = Toolkit.class.getClassLoader();
@@ -70,6 +89,12 @@ public class Toolkit
         }
     }
 
+    /**
+     * Loads & processes news articles from resources folder
+     * Uses HtmlParser to extract relevant info from each file
+     * 
+     * @return -> list of NewsArticles objs containing the processed data
+     */
     public List<NewsArticles> loadNews()
     {
         List<NewsArticles> listNews = new ArrayList<>();
@@ -111,12 +136,21 @@ public class Toolkit
         return listNews;
     }
 
-
+    /**
+     * Gets list of vocab words loaded from GloVe file
+     * 
+     * @return -> List of Strings representing the vocab
+     */
     public static List<String> getListVocabulary() 
     { 
         return listVocabulary; 
     }
 
+    /**
+     * Gets list of vector embeddings loaded from GloVe file
+     * 
+     * @return -> List of double arr[] representing the GloVe vectors
+     */
     public static List<double[]> getlistVectors() 
     { 
         return listVectors; 
