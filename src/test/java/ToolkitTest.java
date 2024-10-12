@@ -10,12 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-class ToolkitTest {
+class ToolkitTest 
+{
     private StopWatch mySW = new StopWatch();
 
-    private String doubleToString(double[] _doubleArray) {
+    private String doubleToString(double[] _doubleArray) 
+    {
         StringBuilder mySB = new StringBuilder();
-        for (int i = 0; i < _doubleArray.length; i++) {
+        for (int i = 0; i < _doubleArray.length; i++) 
+        {
             mySB.append(String.format("%.5f", _doubleArray[i])).append(",");
         }
         mySB.delete(mySB.length() - 1, mySB.length());
@@ -23,9 +26,11 @@ class ToolkitTest {
     }
 
     @Test
-    void loadGLOVE() throws IOException {
+    void loadGLOVE() throws IOException 
+    {
         Toolkit myTK = new Toolkit();
         myTK.loadGlove();
+        
         assertEquals(38534, Toolkit.getListVocabulary().size());
         assertEquals(38534, Toolkit.getlistVectors().size());
         assertEquals(50, Toolkit.getlistVectors().get(0).length);
@@ -39,20 +44,21 @@ class ToolkitTest {
         //performance test
         long totalTime = 0;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; i++) 
+        {
             mySW.start();
             myTK.loadGlove();
             mySW.stop();
             totalTime += mySW.getTime();
             mySW.reset();
         }
-
         System.out.println("Average execution time: " + (totalTime / 20));
         assertTrue(totalTime / 20 < 280);
     }
 
     @Test
-    void loadNews() {
+    void loadNews() 
+    {
         Toolkit myTK = new Toolkit();
         List<NewsArticles> myNewsList = myTK.loadNews();
 
@@ -63,16 +69,15 @@ class ToolkitTest {
         //performance test
         long totalTime = 0;
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++) 
+        {
             mySW.start();
             myTK.loadNews();
             mySW.stop();
             totalTime += mySW.getTime();
             mySW.reset();
         }
-
         System.out.println("Average execution time: " + (totalTime / 50));
         assertTrue(totalTime / 50 < 30);
     }
-
 }
