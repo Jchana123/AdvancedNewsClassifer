@@ -7,7 +7,6 @@ public class HtmlParser
      * @param _htmlCode Contains the full HTML string from a specific news. E.g. 01.htm.
      * @return Return the title if it's been found. Otherwise, return "Title not found!".
      */
-
     public static String getNewsTitle(String _htmlCode) 
     {
         String titleTagOpen = "<title>";
@@ -29,7 +28,6 @@ public class HtmlParser
      * @param _htmlCode Contains the full HTML string from a specific news. E.g. 01.htm.
      * @return Return the content if it's been found. Otherwise, return "Content not found!".
      */
-    
     public static String getNewsContent(String _htmlCode) 
     {
         String contentTagOpen = "\"articleBody\": \"";
@@ -45,6 +43,12 @@ public class HtmlParser
         return "Content not found!";
     }
 
+    /**
+     * Extracts the data type of the news (Training or Testing) from the provided HTML code.
+     * 
+     * @param _htmlCode The full HTML string from a specific news.
+     * @return The extracted data type (Training or Testing).
+     */
     public static NewsArticles.DataType getDataType(String _htmlCode) 
     {
         String dataTypeOpenTag = "<datatype>";
@@ -69,6 +73,12 @@ public class HtmlParser
         return NewsArticles.DataType.Testing;
     }
 
+    /**
+     * Extracts the label of the news from the provided HTML code.
+     * 
+     * @param _htmlCode The full HTML string from a specific news.
+     * @return The extracted label, or -1 if not found.
+     */
     public static String getLabel (String _htmlCode) 
     {
         String labelOpenTag = "<label>";
