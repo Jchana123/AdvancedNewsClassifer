@@ -12,7 +12,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AdvancedNewsClassifierTest {
+public class AdvancedNewsClassifierTest 
+{
     private StopWatch mySW = new StopWatch();
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -20,7 +21,8 @@ public class AdvancedNewsClassifierTest {
     private final PrintStream originalErr = System.err;
 
     @Test
-    void createGloveList() throws IOException {
+    void createGloveList() throws IOException 
+    {
         AdvancedNewsClassifier myANC = new AdvancedNewsClassifier();
         List<Glove> myList = myANC.createGloveList();
 
@@ -28,18 +30,22 @@ public class AdvancedNewsClassifierTest {
     }
 
     @Test
-    void calculateEmbeddingSize() throws IOException {
+    void calculateEmbeddingSize() throws IOException 
+    {
         AdvancedNewsClassifier myANC = new AdvancedNewsClassifier();
         assertEquals(196, myANC.calculateEmbeddingSize(myANC.listEmbedding));
     }
 
     @Test
-    void populateEmbedding_Functional() throws Exception {
+    void populateEmbedding_Functional() throws Exception 
+    {
         AdvancedNewsClassifier myANC = new AdvancedNewsClassifier();
         myANC.embeddingSize = myANC.calculateEmbeddingSize(myANC.listEmbedding);
         myANC.populateEmbedding();
         boolean embeddingValid = true;
-        for (ArticlesEmbedding embedding : myANC.listEmbedding) {
+        
+        for (ArticlesEmbedding embedding : myANC.listEmbedding) 
+        {
             if (embedding.getEmbedding().isEmpty()) {
                 embeddingValid = false;
                 break;
@@ -49,24 +55,27 @@ public class AdvancedNewsClassifierTest {
     }
 
     @Test
-    void populateEmbedding_Performance() throws Exception {
+    void populateEmbedding_Performance() throws Exception 
+    {
         AdvancedNewsClassifier myANC = new AdvancedNewsClassifier();
         myANC.embeddingSize = myANC.calculateEmbeddingSize(myANC.listEmbedding);
         long totalTime = 0;
-        for (int i = 0; i < 100; i++) {
+        
+        for (int i = 0; i < 100; i++) 
+        {
             mySW.start();
             myANC.populateEmbedding();
             mySW.stop();
             totalTime += mySW.getTime();
             mySW.reset();
         }
-
         System.out.println("Average execution time: " + (totalTime / 100));
         assertTrue(totalTime / 100 < 100);
     }
 
     @Test
-    void predictResult() throws Exception {
+    void predictResult() throws Exception 
+    {
         AdvancedNewsClassifier myANC = new AdvancedNewsClassifier();
 
         myANC.embeddingSize = myANC.calculateEmbeddingSize(myANC.listEmbedding);
@@ -77,11 +86,13 @@ public class AdvancedNewsClassifierTest {
     }
 
     @Test
-    void printResults() throws Exception {
+    void printResults() throws Exception 
+    {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
 
         AdvancedNewsClassifier myANC = new AdvancedNewsClassifier();
+        
         myANC.embeddingSize = myANC.calculateEmbeddingSize(myANC.listEmbedding);
         myANC.populateEmbedding();
         myANC.myNeuralNetwork = myANC.buildNeuralNetwork(2);
