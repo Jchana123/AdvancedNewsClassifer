@@ -13,10 +13,23 @@ This classifier takes news articles, processes their text, and uses **GloVe word
 - **PCA Visualizations**: Visualize article embeddings in 2D space with PCA or t-SNE.
   
 - **Please note: for more indepth detail and diagrams of the process see the README.md in ```src/main/java/jivenchana/oop/proj```**
+
+## Contextual Differences and Comparison to TFIDF
+
+### Group 1
+- Articles in **Group 1** focus on **major personalities, policy decisions, and groundbreaking achievements**. They highlight leadership, innovation, and important societal impacts.
+  
+### Group 2
+- **Group 2** centers around **public health** and **corporate developments** related to the pandemic, emphasizing scientific insights, policy changes, and health-related corporate affairs.
+
+### GloVe Embeddings vs TFIDF
+- **GloVe embeddings** capture **contextual relationships** between words, recognizing themes like leadership or public health across different vocabulary. Words that occur in similar contexts across a large corpus share similar vector representations, allowing the model to capture **latent meaning**.
+  
+- In contrast, **TFIDF** focuses on surface-level word frequencies, treating each word independently. For example, if "COVID" is mentioned across several articles, TFIDF might group them together based solely on word occurrence, ignoring their contextual differences. GloVe would differentiate them based on the semantic content, clustering **policy-focused** articles separately from **scientific ones**.
   
 ## Demo
 
-Below I have included a demo example showcasing how the Advanced News Classifer clearly demonstrates contextual awareness when classifying news articles: 
+Below I have included a demo example showcasing how the Advanced News Classifer clearly demonstrates contextual awareness when classifying news articles
 ```
 /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/bin/java -javaagent:/Applications/IntelliJ\ IDEA.app/Contents/lib/idea_rt.jar=50477:/Applications/IntelliJ\ IDEA.app/Contents/bin -Dfile.encoding=UTF-8 -classpath /Users/jivenchana/Documents/AdvancedNewsClassifier/target/classes:/Users/jivenchana/.m2/repository/ org/nd4j/nd4j-native-platform/1.0.0-M2.1/nd4j-native-platform-1.0.0-M2.1.jar uob.oop.AdvancedNewsClassifier
 
