@@ -6,6 +6,15 @@ Welcome to the **Advanced News Classifier** project! This project leverages mach
 
 This classifier takes news articles, processes their text, and uses **GloVe word embeddings** to generate vectorized representations of each article. The project utilizes **Deeplearning4J** to build a neural network for classifying articles into different groups.
 
+### Motivation
+
+The motivation behind this project is to **improve upon the limitations of traditional TFIDF-based classification models**. While TFIDF captures word frequencies, it often misses out on **contextual relationships** between words, leading to less accurate classification in cases where context is crucial for understanding meaning. 
+
+In this project, the use of **GloVe embeddings** allows for a **more robust representation of word semantics**, enabling better understanding of article content beyond mere word counts. By integrating this contextual understanding, I am looking to **hone my craft** and strengthen my ability to work with **supervised learning models**, which will be valuable for future machine learning and NLP projects. 
+
+This project serves as a foundation for tackling more **complex supervised learning tasks** in various fields, ranging from news classification to sentiment analysis, recommendation systems, and beyond. It aims to show the importance of embedding models for capturing context and improving classification accuracy.
+
+
 ### Features:
 - **Text Preprocessing**: Clean, tokenize, and lemmatize news articles using Stanford CoreNLP.
 - **GloVe Embeddings**: Utilize pre-trained GloVe embeddings for vector representation of words.
