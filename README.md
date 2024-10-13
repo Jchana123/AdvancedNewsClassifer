@@ -23,6 +23,9 @@ This project serves as a foundation for tackling more **complex supervised learn
   
 - **Please note: for more indepth detail and diagrams of the process see the README.md in ```src/main/java/jivenchana/oop/proj```**
 
+### Additional documentation: 
+- [Project Structure](src/README.md)
+
 ## Contextual Differences and Comparison to TFIDF
 
 ### Group 1
